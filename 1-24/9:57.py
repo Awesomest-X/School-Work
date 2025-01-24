@@ -1,11 +1,12 @@
 class Recipe:
-    def __init__(self, name, ingredients, cuisine, aliases=None):
+    def __init__(self, name, ingredients, cuisine, aliases=None,instructions=None):
         """
         Initialize a recipe with a name, list of ingredients, cuisine type, and optional aliases.
         """
         self.name = name
         self.ingredients = ingredients
         self.cuisine = cuisine
+        self.instructions = instructions
         self.aliases = aliases or []  # Alternate names for the recipe
 
     def __str__(self):
@@ -13,7 +14,7 @@ class Recipe:
         Return a string representation of the recipe.
         """
         ingredients_str = ", ".join(self.ingredients)
-        return f"Recipe: {self.name}\nCuisine: {self.cuisine}\nIngredients: {ingredients_str}"
+        return f"Recipe: {self.name}\nCuisine: {self.cuisine}\nIngredients: {ingredients_str}\nInstructions: {self.instructions}"
 
 
 class RecipeBook:
@@ -74,6 +75,10 @@ class RecipeBook:
 def interactive_recipe_search():
     # Create a RecipeBook and add recipes
     recipe_book = RecipeBook()
+
+     breakfast_taco_instruction = "\nCook the bacon in the oven for 18 to 20 minutes\nThen saute the green onions with olive oil.\n  Whisk the eggs and pour it into the pan. Gently stir the eggs as they cook to create the perfect pillowy texture.\n Time to assemble. Add a good spoonful or two of scrambled eggs to a tortilla. Top it off with green onion, crumbled bacon, and cheese"
+
+
     
     # Italian Cuisine
     recipe_book.add_recipe(Recipe("Spaghetti Carbonara", ["spaghetti", "eggs", "bacon", "parmesan"], "Italian", ["pasta","parm","carbonara","cheese", "spageti","italian","carborna","italian food","egg"]))
@@ -83,7 +88,7 @@ def interactive_recipe_search():
     
     # Mexican Cuisine
     recipe_book.add_recipe(Recipe("Beef Tacos", ["tortilla", "beef", "lettuce", "cheese", "salsa"], "Mexican", ["taco","tacos with beef","taco with beef","mexican","mex","mexican food","tacos","beef taco"]))
-    recipe_book.add_recipe(Recipe("Breakfast Tacos", ["tortilla", "bacon", "eggs", "cheese", "salsa"], "Mexican", ["taco","tacos","breakfast","mexican","mex","mexican food","breakfast taco"]))
+    recipe_book.add_recipe(Recipe("Breakfast Tacos", ["tortilla", "bacon", "eggs", "cheese", "salsa"], "Mexican", ["taco","tacos","breakfast","mexican","mex","mexican food","breakfast taco"], breakfast_taco_instruction))
     recipe_book.add_recipe(Recipe("Pork Tacos", ["tortilla", "pork", "lettuce", "cheese", "salsa"], "Mexican", ["taco", "tacos with pork","taco with pork","pork taco","mexican","mex","mexican food","tacos"]))
     recipe_book.add_recipe(Recipe("Guacamole", ["avocado", "onion", "tomato", "lime"], "Mexican",["mexican","guac","mex","mexican food"]))
     recipe_book.add_recipe(Recipe("Enchiladas", ["tortilla", "chicken", "cheese", "enchilada sauce"], "Mexican",["mexican","mex","mexican food"]))
