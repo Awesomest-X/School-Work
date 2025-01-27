@@ -168,6 +168,7 @@ apple_pie_instruction = (
     recipe_book.add_recipe(Recipe("Pancakes", ["flour", "milk", "eggs", "butter", "syrup"], "American", ["pancake","egg","american","american food","breakfast food","breakfast"]))
     recipe_book.add_recipe(Recipe("Burger", ["burger buns", "ground beef", "lettuce (optional)", "tomato (optional)", "cheese (optional)","american"], "American", ["lettuce","tomato","cheese","cheeseburger","beef","cheese burger","a burger","hamburger","american","american food"]))
     recipe_book.add_recipe(Recipe("Apple Pie",["apples", "granulated sugar", "brown sugar", "lemon juice","cinnamon", "nutmeg", "ginger", "butter", "flour", "cornstarch", "heavy cream", "coarse sugar", "pie crusts"], "American",["dessert", "pie","american food"],apple_pie_instructions))
+    recipe_book.add_recipe(Recipe("Grilled Cheese Sandwich", ["bread", "cheese", "butter"], "American",["grilled cheese","american","american food"]))
 
     
     print("Welcome to Jer's Recipe Finder!")
