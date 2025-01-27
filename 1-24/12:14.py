@@ -142,9 +142,9 @@ def interactive_recipe_search():
         "Assemble the burger with patties, lettuce, tomato, pickles, and condiments."
     )
 apple_pie_instruction = (
-  "\nToss apples with sugars, spices, and lemon juice.",
-        "Thicken mixture with flour and cornstarch, then add to pie crust.",
-        "Dot with butter, add top crust, brush with cream, and sprinkle with coarse sugar.",
+  "\nToss apples with sugars, spices, and lemon juice.\n",
+        "Thicken mixture with flour and cornstarch, then add to pie crust.\n",
+        "Dot with butter, add top crust, brush with cream, and sprinkle with coarse sugar.\n",
         "Bake for 45-50 minutes. Cool before serving."
 )
     # Sample Recipes
