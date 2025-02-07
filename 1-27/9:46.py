@@ -148,7 +148,7 @@ def interactive_recipe_search():
 
     # Sample Recipes
     # Italian Cuisine
-    recipe_book.add_recipe(Recipe("Spaghetti Carbonara", ["spaghetti", "eggs", "guanciale", "romano cheese"], "Italian", ["pasta", "carbonara", "cheese", "spaghetti"], carbonara_instruction))
+    recipe_book.add_recipe(Recipe("Spaghetti Carbonara", ["spaghetti", "eggs", "guanciale", "romano cheese"], "Italian", ["pasta", "carbonara", "cheese", "spaghetti", "spagetti"], carbonara_instruction))
     recipe_book.add_recipe(Recipe("Margherita Pizza", ["dough", "tomato", "mozzarella", "basil", "olive oil"], "Italian", ["pizza"], margherita_instruction))
     recipe_book.add_recipe(Recipe("Chicken Alfredo", ["fettuccine", "chicken breast", "butter", "heavy cream", "parmesan", "garlic"], "Italian", ["alfredo"], alfredo_instruction))
     recipe_book.add_recipe(Recipe("Lasagna", ["lasagna sheets", "ground beef", "onion", "garlic", "tomato sauce", "ricotta", "mozzarella", "parmesan", "basil", "olive oil"], "Italian", ["lasagna"], lasagna_instruction))
