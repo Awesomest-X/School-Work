@@ -34,14 +34,17 @@ public class JerNatProject extends LinearOpMode {
         rightMotor = hardwareMap.get(DcMotorEx.class, "rightMotor");
         armMotor    = hardwareMap.get(DcMotorEx.class, "armMotor");
 
-        // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
-        // Pushing the left and right sticks forward MUST make robot go forward. So adjust these two lines based on your first test drive.
-        // Note: The settings here assume direct drive on left and right wheels.  Gear Reduction or 90 Deg drives may require direction flips
+        // To drive forward, most robots need the motor on one side to be reversed, 
+        // because the axles point in opposite directions.
+        // Pushing the left and right sticks forward MUST make robot go forward.
+        // So adjust these two lines based on your first test drive.
+        // Note: The settings here assume direct drive on left and right wheels. 
+        // Gear Reduction or 90 Deg drives may require direction flips
         leftMotor.setDirection(DcMotorEx.Direction.REVERSE);
         rightMotor.setDirection(DcMotorEx.Direction.FORWARD);
         armMotor.setDirection(DcMotorEx.Direction.FORWARD);
 
-        // If there are encoders connected, switch to RUN_USING_ENCODER mode for greater accuracy
+        // Because of the encoders connected, switch to RUN_USING_ENCODER mode for greater accuracy
         armMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
            leftMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
         rightMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
