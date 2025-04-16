@@ -22,7 +22,16 @@ public class JerNatProJect extends LinearOpMode {
     private ElapsedTime     runtime = new ElapsedTime();          // sets rate to move servo
     public static final double ARM_UP_POWER    =  0.30 ;   // Run arm motor up at 30% power
     public static final double ARM_DOWN_POWER  = -0.25 ;   // Run arm motor down at -25% power
+double Kp = 0.02;
+double Ki = 0.001;
+double Kd = 0.005;
 
+// Variables for PID
+double lastError = 0;
+double integral = 0;
+
+// Deadband threshold (encoder counts)
+final int DEAD_BAND = 3;
     /*                                         
      * Code to run ONCE when the driver hits INIT
      */
@@ -89,35 +98,48 @@ double armSmoothingFactor = 0.2; // Lower = smoother
         else if (gamepad1.right_bumper){
              power = 0;
         }
-        
+
+               int currentPos = armMotor.getCurrentPosition();
+    int targetPos = currentArmTarget;  // Use your existing logic to update the target
+    
+    // Calculate error and integrate/derive
+    double error = targetPos - currentPos;
+    integral += error;
+    double derivative = error - lastError;
+    lastError = error;
+
+    // Compute the PID output
+    double pidOutput = (Kp * error) + (Ki * integral) + (Kd * derivative);
+
+    // Implement a ramp down scaling if the error is small (smooth deceleration)
+    double rampFactor = 1.0;  
+    int slowZone = 50;  // When within 50 counts, start reducing power
+    if (Math.abs(error) < slowZone) {
+        rampFactor = (double) Math.abs(error) / slowZone;
+    }
+    pidOutput *= rampFactor;
+
+    // Enforce the deadband: if within +/- DEAD_BAND of zero, set power to zero
+    if (Math.abs(currentPos) <= DEAD_BAND) {
+        pidOutput = 0;
+    }
+
                         Arm = Range.clip(Arm, -340, 0);
                         currentArmTarget = (int) lerp(currentArmTarget, Arm, armSmoothingFactor);
-      armMotor.setTargetPosition(currentArmTarget); 
+      armMotor.setTargetPosition(targetPos); 
           armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            armMotor.setPower(power);
+    armMotor.setPower(pidOutput);
 
-/*if (gamepad1.a){
-    runtime.reset();
-    cool = true;
-}
- else if (gamepad1.b){
-    cool = false;
-}
-
-if (cool = true && runtime.seconds() < 3.5) {
-     moveBot(1,-1);
-   }
-   else {*/
     moveBot(left,right);
-//}
+
 
 
 
 
  // Send telemetry message to signify robot running;
-        telemetry.addData(">>>Power", armMotor.getPower());    
-        telemetry.addData(">>>Position", armMotor.getCurrentPosition());  
-        telemetry.addData(">>>Target", armMotor.getTargetPosition());  
+        telemetry.addData(">>>Current Position", currentPos);
+        telemetry.addData(">>>Target Position", targetPos);
+        telemetry.addData(">>>PID Output", pidOutput);
         telemetry.addData(">>>Left",  "%.2f", left);
         telemetry.addData(">>>Right", "%.2f", right);
         telemetry.update();
